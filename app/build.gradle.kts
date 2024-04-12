@@ -71,7 +71,4 @@ dependencies {
 
     //todo for animations loader
     implementation ("com.github.ybq:Android-SpinKit:1.4.0")
-
-
-
 }
