@@ -12,19 +12,31 @@ import com.courses.notesapp.R
 import com.courses.notesapp.databinding.FragmentRegisterBinding
 import com.courses.notesapp.models.UserRequest
 import com.courses.notesapp.util.ErrorHandling
+import com.courses.notesapp.util.TokenManager
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class RegisterFragment : Fragment(R.layout.fragment_register) {
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModels<AuthViewModel>()
+
+    @Inject
+    lateinit var tokenManager: TokenManager
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentRegisterBinding.inflate(layoutInflater)
+
+
+        //todo if the token is present then move to the main screen.
+        if(tokenManager.getToken() != null){
+            findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
+        }
+
         return binding.root
     }
 
@@ -70,6 +82,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
                 }
 
                 is ErrorHandling.Success -> {
+                    tokenManager.saveToken(it.data!!.token)
                     findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
                     binding.progressBar.visibility = View.GONE
                 }
