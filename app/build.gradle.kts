@@ -71,4 +71,13 @@ dependencies {
 
     //todo for animations loader
     implementation ("com.github.ybq:Android-SpinKit:1.4.0")
+
+    //intuit
+    implementation ("com.intuit.sdp:sdp-android:1.1.0")
+    implementation ("com.intuit.ssp:ssp-android:1.0.6")
+
+
+    //loading button
+    implementation("com.github.leandroborgesferreira:loading-button-android:2.3.0")
+
 }
