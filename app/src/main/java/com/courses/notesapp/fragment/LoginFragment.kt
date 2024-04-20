@@ -49,9 +49,7 @@ class LoginFragment:Fragment(R.layout.fragment_login) {
                 binding.txtError.text = validationInput.second
             }
         }
-
         observeLoginState()
-
     }
 
 

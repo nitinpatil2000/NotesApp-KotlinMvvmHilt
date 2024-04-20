@@ -10,23 +10,25 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NoteViewModel @Inject constructor(private val noteRepository: NoteRepository):ViewModel(){
-
     val noteLiveData get() = noteRepository.noteLiveData
-    val noteStatus get() =  noteRepository.noteStatus
 
-    fun getNotes(){
+    //todo for create, update and delete
+    val statusLiveData get() = noteRepository.noteStatus
+
+    fun getNotes() {
         viewModelScope.launch {
             noteRepository.getNotes()
         }
     }
 
-    fun createNote(noteRequest: NoteRequest){
+
+    fun createNote(noteRequest: NoteRequest) {
         viewModelScope.launch {
             noteRepository.createNote(noteRequest)
         }
     }
 
-    fun updateNote(noteId:String, noteRequest: NoteRequest){
+    fun updateNote(noteId: String, noteRequest: NoteRequest) {
         viewModelScope.launch {
             noteRepository.updateNote(noteId, noteRequest)
         }

@@ -42,6 +42,11 @@ class NotesItemAdapter : RecyclerView.Adapter<NotesItemAdapter.NotesItemViewHold
     override fun onBindViewHolder(holder: NotesItemViewHolder, position: Int) {
         val noteList = differ.currentList[position]
         holder.bind(noteList)
+
+        holder.itemView.setOnClickListener {
+            noteItemClick?.invoke(noteList)
+        }
+
     }
 
 
@@ -49,5 +54,6 @@ class NotesItemAdapter : RecyclerView.Adapter<NotesItemAdapter.NotesItemViewHold
         return differ.currentList.size
     }
 
+    var noteItemClick: ((NoteResponse) -> Unit) ?= null
 
 }

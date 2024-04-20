@@ -1,5 +1,10 @@
 package com.courses.notesapp.models.note
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+
+@Parcelize
 data class NoteResponse(
     val __v: Int,
     val _id: String,
@@ -8,4 +13,4 @@ data class NoteResponse(
     val title: String,
     val updatedAt: String,
     val userId: String
-)
+) : Parcelable

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.courses.notesapp.R
 import com.courses.notesapp.adapter.NotesItemAdapter
@@ -14,7 +15,9 @@ import com.courses.notesapp.databinding.FragmentMainBinding
 import com.courses.notesapp.util.ErrorHandling
 import com.courses.notesapp.viewmodel.NoteViewModel
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainFragment:Fragment(R.layout.fragment_main) {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
@@ -44,7 +47,18 @@ class MainFragment:Fragment(R.layout.fragment_main) {
 
         observeNoteState()
 
+        noteAdapter.noteItemClick = {
+            val bundle = Bundle().apply {
+                putParcelable("note", it)
+            }
+            findNavController().navigate(R.id.action_mainFragment_to_noteFragment, bundle)
+        }
+
+        binding.addNote.setOnClickListener{
+            findNavController().navigate(R.id.action_mainFragment_to_noteFragment)
+        }
     }
+
 
     private fun setUpRecyclerView() {
         binding.noteList.apply {

@@ -15,6 +15,7 @@ class NoteRepository @Inject constructor(private val noteApi: NoteApi) {
     val noteLiveData: LiveData<ErrorHandling<List<NoteResponse>>>
         get() = _noteLiveData
 
+    //todo for create, update and delete.
     private val _noteStatus = MutableLiveData<ErrorHandling<String>>()
     val noteStatus: LiveData<ErrorHandling<String>>
         get() = _noteStatus

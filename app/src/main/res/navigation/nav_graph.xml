@@ -50,5 +50,10 @@
         android:id="@+id/noteFragment"
         android:name="com.courses.notesapp.fragment.NoteFragment"
         android:label="NoteFragment"
-        tools:layout="@layout/fragment_note" />
+        tools:layout="@layout/fragment_note" >
+        <argument
+            android:name="note"
+            app:argType="com.courses.notesapp.models.note.NoteResponse"
+            app:nullable="true" />
+    </fragment>
 </navigation>
